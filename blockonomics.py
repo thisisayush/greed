@@ -23,8 +23,8 @@ class Blockonomics:
         else:
           url += "?secret=" + secret
         match_callback = configloader.config["Bitcoin"]["match_callback"]
-        if match_callback != '':
-          url += "&match_callback=" + secret
+        if match_callback != 'no':
+          url += "&match_callback=" + match_callback
         headers = {'Authorization': "Bearer " + api_key}
         print(url)
         r = requests.post(url, headers=headers)
