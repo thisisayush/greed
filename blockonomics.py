@@ -19,9 +19,12 @@ class Blockonomics:
         secret = configloader.config["Bitcoin"]["secret"]
         url = 'https://www.blockonomics.co/api/new_address'
         if reset == True:
-          url += '?match_callback='+secret+'&reset=1'
+          url += '?secret='+secret+'&reset=1'
         else:
-          url += "?match_callback=" + secret
+          url += "?secret=" + secret
+        match_callback = configloader.config["Bitcoin"]["match_callback"]
+        if match_callback != '':
+          url += "&match_callback=" + secret
         headers = {'Authorization': "Bearer " + api_key}
         print(url)
         r = requests.post(url, headers=headers)
